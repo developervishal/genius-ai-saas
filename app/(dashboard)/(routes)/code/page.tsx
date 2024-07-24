@@ -1,7 +1,7 @@
 "use client"
 import * as z from "zod"
 import Heading from "@/components/custom/heading"
-import { Code, MessageSquare } from "lucide-react"
+import { Code } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { formSchema } from './constants'
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -98,7 +98,7 @@ const CodePage = () => {
                             className={cn(
                                 "p-8 w-full flex items-start gap-x-8 rounded-lg",
                                 message.role === 'user' ? "bg-white border border-black/10" : "bg-muted")}
-                            key={message.content}>
+                            key={String(message.content)}>
                             {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
                             <ReactMarkDown
                                 components={{
@@ -113,7 +113,8 @@ const CodePage = () => {
                                 }}
                                 className="text-sm overflow-hidden leading-7"
                             >
-                                {message.content || ""}
+
+                                {String(message.content) || ""}
                             </ReactMarkDown>
                         </div>
                     ))}

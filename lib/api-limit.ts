@@ -1,4 +1,3 @@
-// import { auth } from '@clerk/nextjs'
 import prisma from './prisma'
 import { MAX_FREE_COUNTS } from '../constants'
 import { auth } from '@clerk/nextjs/server'
