@@ -1,4 +1,4 @@
-import prisma from "@/lib/prisma";
+import prismadb from "@/lib/prisma";
 import { stripe } from "@/lib/stripe";
 import { absoluteUrl } from "@/lib/utils";
 import { auth, currentUser } from "@clerk/nextjs/server";
@@ -13,7 +13,7 @@ export async function GET() {
         if (!userId || !user) {
             return new NextResponse("Unauthorised", { status: 401 })
         }
-        const userSubscription = await prisma?.userSubscription.findUnique({
+        const userSubscription = await prismadb.userSubscription.findUnique({
             where: { userId }
         })
         if (userSubscription && userSubscription.stripeCustomerId) {

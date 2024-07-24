@@ -1,4 +1,5 @@
 import { auth } from "@clerk/nextjs/server"
+import prismadb from "./prisma"
 
 
 export const checkSubscription = async () => {
@@ -7,7 +8,7 @@ export const checkSubscription = async () => {
         return false
     }
 
-    const userSubscription = await prisma?.userSubscription.findUnique({
+    const userSubscription = await prismadb.userSubscription.findUnique({
         where: {
             userId
         }, select: {
